@@ -30,3 +30,17 @@ describe("convert to single Alphabet",()=>{
   })
 
 })
+
+describe("give target < 10", ()=>{
+  it("give 3, return III", ()=>{
+    expect(integerToRoman(3)).toBe("III");
+  })
+  it("give 4, return IV", ()=>{
+    expect(integerToRoman(4)).toBe("IV");
+  })
+  it("give 8, return VIII", ()=>{
+    expect(integerToRoman(8)).toBe("VIII");
+  })
+
+  
+})
