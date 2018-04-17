@@ -84,3 +84,22 @@ describe("give target for digit in hundred place",()=>{
 })
 
 
+describe("give target for digit in ten place",()=>{
+  it("give 90, return XC", ()=>{
+    expect(integerToRoman(90)).toBe("XC");
+  });
+
+  it("give 70, return LXX", ()=>{
+    expect(integerToRoman(70)).toBe("LXX");
+  });
+
+  it("give 40, return XL",()=>{
+    expect(integerToRoman(40)).toBe("XL");
+  });
+
+  it("give 30, return XXX", ()=>{
+    expect(integerToRoman(30)).toBe("XXX");
+  });
+})
+
+
