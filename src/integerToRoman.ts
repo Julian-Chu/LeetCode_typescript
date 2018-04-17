@@ -8,6 +8,26 @@ function integerToRoman(integer: number): string {
   let countOfI: number = 0;
   let countOfIRightToV: number = 0;
 
+  let digit_thousand = Math.floor(input / 1000);
+  if (digit_thousand > 0) {
+    for (let i = 0; i < digit_thousand; i++)  result.push("M");
+  }
+  let digit_hundred = Math.floor(input % 1000 / 100);
+  if (digit_hundred > 0) {
+    if (digit_hundred === 9) result.push("CM");
+    else if (digit_hundred >= 5) {
+      result.push("D");
+      for (let i = 0; i < digit_hundred - 5; i++) {
+        result.push("C");
+      }
+    } else {
+      for (let i = 0; i < digit_hundred; i++) {
+        result.push("C");
+      }
+    }
+  }
+
+
   if (input < 90) {
     if (input < 40) {
       countOfX = Math.floor(input / 10);

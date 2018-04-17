@@ -54,3 +54,15 @@ describe("give target < 90",()=>{
     expect(integerToRoman(89)).toBe("LXXXIX");
   })
 })
+
+describe("give target > 1000", ()=>{
+  it("give 3000, return M", ()=>{
+    expect(integerToRoman(3000)).toBe("MMM");
+  });
+
+  it("give 1000, return M", ()=>{
+    expect(integerToRoman(1000)).toBe("M");
+  })
+})
+
+
