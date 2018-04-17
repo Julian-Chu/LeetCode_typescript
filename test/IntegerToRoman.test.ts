@@ -31,7 +31,7 @@ describe("convert to single Alphabet",()=>{
 
 })
 
-describe("give target < 10", ()=>{
+describe("give target < 9", ()=>{
   it("give 3, return III", ()=>{
     expect(integerToRoman(3)).toBe("III");
   })
@@ -41,6 +41,16 @@ describe("give target < 10", ()=>{
   it("give 8, return VIII", ()=>{
     expect(integerToRoman(8)).toBe("VIII");
   })
+})
 
-  
+describe("give target < 90",()=>{
+  it("give 9, return IX",()=>{
+    expect(integerToRoman(9)).toBe("IX");
+  })
+  it("give 11, return XI",()=>{
+    expect(integerToRoman(11)).toBe("XI");
+  })
+  it("give 89, return LXXXIX",()=>{
+    expect(integerToRoman(89)).toBe("LXXXIX");
+  })
 })
