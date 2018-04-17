@@ -55,7 +55,7 @@ describe("give target < 90",()=>{
   })
 })
 
-describe("give target > 1000", ()=>{
+describe("give target for digit in thousand place", ()=>{
   it("give 3000, return M", ()=>{
     expect(integerToRoman(3000)).toBe("MMM");
   });
@@ -63,6 +63,24 @@ describe("give target > 1000", ()=>{
   it("give 1000, return M", ()=>{
     expect(integerToRoman(1000)).toBe("M");
   })
+})
+
+describe("give target for digit in hundred place",()=>{
+  it("give 900, return CM", ()=>{
+    expect(integerToRoman(900)).toBe("CM");
+  });
+
+  it("give 700, return DCC", ()=>{
+    expect(integerToRoman(700)).toBe("DCC");
+  });
+
+  it("give 400, return CD",()=>{
+    expect(integerToRoman(400)).toBe("CD");
+  });
+
+  it("give 300, return CCC", ()=>{
+    expect(integerToRoman(300)).toBe("CCC");
+  });
 })
 
 

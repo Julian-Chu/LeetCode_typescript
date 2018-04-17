@@ -20,7 +20,9 @@ function integerToRoman(integer: number): string {
       for (let i = 0; i < digit_hundred - 5; i++) {
         result.push("C");
       }
-    } else {
+    } 
+    else if( digit_hundred === 4) result.push("CD");
+    else {
       for (let i = 0; i < digit_hundred; i++) {
         result.push("C");
       }
