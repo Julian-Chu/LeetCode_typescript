@@ -102,4 +102,13 @@ describe("give target for digit in ten place",()=>{
   });
 })
 
+describe("give 4 digit", ()=>{
+  it("give 3999, return MMMCMXCIX",()=>{
+    expect(integerToRoman(3999)).toBe("MMMCMXCIX");
+  });
+
+  it("give 1444, return MCDXLIV", ()=>{
+    expect(integerToRoman(1444)).toBe("MCDXLIV");
+  })
+})
 
