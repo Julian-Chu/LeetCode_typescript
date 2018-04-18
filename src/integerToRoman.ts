@@ -1,12 +1,6 @@
 function integerToRoman(integer: number): string {
   let input: number = integer;
   let result: string[] = [];
-  let countOfL: number = 0;
-  let countOfX: number = 0;
-  let countOfXRightToL: number = 0;
-  let countOfV: number = 0;
-  let countOfI: number = 0;
-  let countOfIRightToV: number = 0;
 
   let digit_thousand = Math.floor(input / 1000);
   input = input % 1000;
@@ -22,8 +16,8 @@ function integerToRoman(integer: number): string {
       for (let i = 0; i < digit_hundred - 5; i++) {
         result.push("C");
       }
-    } 
-    else if( digit_hundred === 4) result.push("CD");
+    }
+    else if (digit_hundred === 4) result.push("CD");
     else {
       for (let i = 0; i < digit_hundred; i++) {
         result.push("C");
@@ -39,8 +33,8 @@ function integerToRoman(integer: number): string {
       for (let i = 0; i < digit_ten - 5; i++) {
         result.push("X");
       }
-    } 
-    else if( digit_ten === 4) result.push("XL");
+    }
+    else if (digit_ten === 4) result.push("XL");
     else {
       for (let i = 0; i < digit_ten; i++) {
         result.push("X");
@@ -48,65 +42,21 @@ function integerToRoman(integer: number): string {
     }
   }
 
-
-  // if (input < 90) {
-  //   if (input < 40) {
-  //     countOfX = Math.floor(input / 10);
-  //     input = input % 10;
-  //   } else {
-  //     countOfL = 1;
-  //     if (input >= 50) {
-  //       countOfXRightToL = Math.floor((input % 50) / 10);
-  //       input = input % 50 % 10;
-  //     } else {
-  //       countOfX = 1
-  //     }
-  //   }
-  // }
-
-  // for (let i = 0; i < countOfX; i++) {
-  //   result.push("X");
-  // }
-  // for (let i = 0; i < countOfL; i++) {
-  //   result.push("L");
-  // }
-  // for (let i = 0; i < countOfXRightToL; i++) {
-  //   result.push("X");
-  // }
-
-
-  if (input < 10) {
-    if (input === 9) {
-      result.push("I");
-      result.push("X");
+  if (input > 0) {
+    if (input === 9) result.push("IX");
+    else if (input >= 5) {
+      result.push("V");
+      for (let i = 0; i < input - 5; i++) {
+        result.push("I");
+      }
     }
-    else if (input < 4) {
-      countOfI = input;
-    } else {
-      countOfV = 1
-      if (input >= 5) {
-        countOfIRightToV = input % 5;
-      } else {
-        countOfI = 1;
+    else if (input === 4) result.push("IV");
+    else {
+      for (let i = 0; i < input; i++) {
+        result.push("I");
       }
     }
   }
-
-  for (let i = 0; i < countOfI; i++) {
-    result.push("I");
-  }
-
-  for (let i = 0; i < countOfV; i++) {
-    result.push("V");
-  }
-
-  for (let i = 0; i < countOfIRightToV; i++) {
-    result.push("I");
-  }
-
-  if (integer === 100) return "C";
-  if (integer === 500) return "D";
-  if (integer === 1000) return "M";
   return result.join("");
 }
 
