@@ -5,11 +5,22 @@ var isValid = function(s:string):boolean {
     Parenthesses.set("[","]");
     Parenthesses.set("{","}");
 
-    
-    for(let i=0; i< s.length; i+=2){
-        if(Parenthesses.get(s[i]) === s[i+1]) return true
+    let i:number = 0;
+    let tempArray:string[] = [];
+    while(i < s.length){
+        if(Parenthesses.has(s[i+1])){
+            tempArray.push(s[i]);
+            i+=2;
+        }else if(tempArray.length !==0){
+            if(tempArray.pop() !== s[i]) return false;
+        }
+        else{
+            if(Parenthesses.get(s[i]) !== s[i+1]) return false;
+            i++;
+        }
+
     }
-    return false;
+    return true;
 };
 
 export default isValid;
