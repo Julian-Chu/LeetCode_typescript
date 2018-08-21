@@ -1,4 +1,4 @@
-import integerToRoman from '../src/integerToRoman';
+import integerToRoman from '../src/LeetCode_12_IntegerToRoman/integerToRoman';
 
 describe("convert to single Alphabet",()=>{
   it("give 1 return I", ()=>{
