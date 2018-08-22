@@ -8,7 +8,33 @@ export class TreeNode {
 }
 
 export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
+  let pathToP = getSearchPath(root, p);
+  let pathToQ = getSearchPath(root, q);
+
+  console.log(pathToP);
+  console.log(pathToQ);
+
+  for (let i = 0; i < pathToQ.length; i++) {
+    if (pathToP[i].val === pathToQ[i].val) return pathToP[i].val;
+  }
+
   return 0;
+}
+
+function getSearchPath(root: TreeNode, node: TreeNode): Array<TreeNode> {
+  let path: Array<TreeNode> = [];
+  path.push(root);
+
+  if (root.left && root.left.val === node.val) {
+    path.push(root.left);
+    return path;
+  } else if (root.right && root.right.val === node.val) {
+    path.push(root.right);
+    return path;
+  } else {
+  }
+
+  return [];
 }
 
 export function createBinaryTree(): TreeNode {
