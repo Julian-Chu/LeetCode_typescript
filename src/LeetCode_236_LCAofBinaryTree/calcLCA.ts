@@ -1,3 +1,4 @@
+import { TreeNode } from "./calcLCA";
 export class TreeNode {
   val: number;
   left?: TreeNode;
@@ -32,9 +33,13 @@ function getSearchPath(root: TreeNode, node: TreeNode): Array<TreeNode> {
     path.push(root.right);
     return path;
   } else {
+    return getSubSearchPath(path, node);
   }
+}
 
-  return [];
+function getSubSearchPath(path: Array<TreeNode>, node: TreeNode) {
+  let newPath = path;
+  return newPath;
 }
 
 export function createBinaryTree(): TreeNode {
