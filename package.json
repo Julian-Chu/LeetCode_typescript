@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "nodemon": ".\\node_modules\\nodemon\\bin\\nodemon.js --exec \"npm run test\""
   },
   "author": "",
