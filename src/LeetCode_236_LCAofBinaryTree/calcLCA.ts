@@ -1,3 +1,4 @@
+import { TreeNode } from "./calcLCA";
 export class TreeNode {
   val: number;
   left?: TreeNode;
@@ -10,7 +11,8 @@ export class TreeNode {
 export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
   let pathToP = getSearchPath(root, p);
   let pathToQ = getSearchPath(root, q);
-
+  console.log(pathToP);
+  console.log(pathToQ);
   for (let i = 0; i < pathToQ.length; i++) {
     if (pathToP[i].val === pathToQ[i].val) return pathToP[i].val;
   }
@@ -20,30 +22,56 @@ export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
 
 function getSearchPath(root: TreeNode, node: TreeNode): Array<TreeNode> {
   let path: Array<TreeNode> = [];
-  path.push(root);
+  let rootClone = Object.assign({}, root);
+  path.push(rootClone);
 
-  if (root.left) {
-    if (root.left.val === node.val) {
-      path.push(root.left);
+  if (rootClone.left) {
+    if (rootClone.left.val === node.val) {
+      path.push(rootClone.left);
       return path;
     } else {
-      // return getSearchPath(root.left, node);
-      path.push(new TreeNode(root.val));
+      path = getSubPath(rootClone.left, node, path);
+      // path.push(new TreeNode(root.val));
     }
   }
-
+  console.log("path:", path);
   if (path.length !== 1 && path[path.length - 1].val !== root.val) return path;
-  path.pop();
 
-  if (root.right) {
-    if (root.right.val === node.val) path.push(root.right);
+  console.log("path:", path);
+  if (rootClone.right) {
+    if (rootClone.right.val === node.val) path.push(rootClone.right);
   }
 
   return path;
 }
 
-function getSubSearchPath(path: Array<TreeNode>, node: TreeNode) {
-  let newPath = path;
+function getSubPath(
+  root: TreeNode,
+  node: TreeNode,
+  path: Array<TreeNode>
+): Array<TreeNode> {
+  let newPath = path.slice();
+  let newRoot = Object.assign({}, root);
+  if (newRoot.left && newRoot.left.val === node.val) {
+    newPath.push(newRoot.left);
+    return newPath;
+  } else if (newRoot.right && newRoot.right.val === node.val) {
+    newPath.push(newRoot.right);
+    return newPath;
+  } else {
+    if (newRoot.left) {
+      newPath = getSubPath(newRoot.left, node, newPath);
+      if (newPath.length > path.length) return newPath;
+    }
+
+    if (newRoot.right) {
+      newPath = getSubPath(newRoot.right, node, newPath);
+      if (newPath.length > path.length) return newPath;
+    }
+  }
+
+  if (newPath.length > 1) newPath.pop();
+
   return newPath;
 }
 

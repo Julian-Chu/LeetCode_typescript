@@ -15,5 +15,9 @@ describe("calc Lower Common Ancestor", () => {
     it("p=5, q=8, return 3", () => {
       expect(calcLCA(root, new TreeNode(5), new TreeNode(8))).toBe(3);
     });
+
+    it("p=6,q=5,return 5", () => {
+      expect(calcLCA(root, new TreeNode(6), new TreeNode(5))).toBe(5);
+    });
   });
 });
