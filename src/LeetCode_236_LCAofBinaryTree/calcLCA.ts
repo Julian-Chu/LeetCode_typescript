@@ -1,4 +1,3 @@
-import { TreeNode } from "./calcLCA";
 export class TreeNode {
   val: number;
   left?: TreeNode;
@@ -11,10 +10,11 @@ export class TreeNode {
 export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
   let pathToP = getSearchPath(root, p);
   let pathToQ = getSearchPath(root, q);
-  console.log(pathToP);
-  console.log(pathToQ);
-  for (let i = 0; i < pathToQ.length; i++) {
-    if (pathToP[i].val === pathToQ[i].val) return pathToP[i].val;
+  let arrLength =
+    pathToP.length > pathToQ.length ? pathToP.length : pathToQ.length;
+  for (let i = 0; i < arrLength; i++) {
+    if (!pathToP[i] || !pathToQ[i] || pathToP[i].val !== pathToQ[i].val)
+      return pathToP[i - 1].val;
   }
 
   return 0;
@@ -52,6 +52,7 @@ function getSubPath(
 ): Array<TreeNode> {
   let newPath = path.slice();
   let newRoot = Object.assign({}, root);
+  newPath.push(newRoot);
   if (newRoot.left && newRoot.left.val === node.val) {
     newPath.push(newRoot.left);
     return newPath;
@@ -70,7 +71,7 @@ function getSubPath(
     }
   }
 
-  if (newPath.length > 1) newPath.pop();
+  // if (newPath.length > 1) newPath.pop();
 
   return newPath;
 }
