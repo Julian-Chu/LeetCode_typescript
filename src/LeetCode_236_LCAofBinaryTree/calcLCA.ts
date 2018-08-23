@@ -8,8 +8,10 @@ export class TreeNode {
 }
 
 export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
-  let pathToP = getSearchPath(root, p);
-  let pathToQ = getSearchPath(root, q);
+  let pathToP = getPath(root, p);
+  let pathToQ = getPath(root, q);
+  console.log(pathToP);
+  console.log(pathToQ);
   let arrLength =
     pathToP.length > pathToQ.length ? pathToP.length : pathToQ.length;
   for (let i = 0; i < arrLength; i++) {
@@ -20,35 +22,10 @@ export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
   return 0;
 }
 
-function getSearchPath(root: TreeNode, node: TreeNode): Array<TreeNode> {
-  let path: Array<TreeNode> = [];
-  let rootClone = Object.assign({}, root);
-  path.push(rootClone);
-
-  if (rootClone.left) {
-    if (rootClone.left.val === node.val) {
-      path.push(rootClone.left);
-      return path;
-    } else {
-      path = getSubPath(rootClone.left, node, path);
-      // path.push(new TreeNode(root.val));
-    }
-  }
-  console.log("path:", path);
-  if (path.length !== 1 && path[path.length - 1].val !== root.val) return path;
-
-  console.log("path:", path);
-  if (rootClone.right) {
-    if (rootClone.right.val === node.val) path.push(rootClone.right);
-  }
-
-  return path;
-}
-
-function getSubPath(
+function getPath(
   root: TreeNode,
   node: TreeNode,
-  path: Array<TreeNode>
+  path: Array<TreeNode> = []
 ): Array<TreeNode> {
   let newPath = path.slice();
   let newRoot = Object.assign({}, root);
@@ -61,12 +38,12 @@ function getSubPath(
     return newPath;
   } else {
     if (newRoot.left) {
-      newPath = getSubPath(newRoot.left, node, newPath);
+      newPath = getPath(newRoot.left, node, newPath);
       if (newPath.length > path.length) return newPath;
     }
 
     if (newRoot.right) {
-      newPath = getSubPath(newRoot.right, node, newPath);
+      newPath = getPath(newRoot.right, node, newPath);
       if (newPath.length > path.length) return newPath;
     }
   }
