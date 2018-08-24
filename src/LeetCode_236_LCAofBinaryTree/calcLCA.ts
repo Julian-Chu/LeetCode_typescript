@@ -7,19 +7,16 @@ export class TreeNode {
   }
 }
 
-export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): number {
+export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode {
   let pathToP = getPath(root, p);
   let pathToQ = getPath(root, q);
-  console.log(pathToP);
-  console.log(pathToQ);
   let arrLength =
     pathToP.length > pathToQ.length ? pathToP.length : pathToQ.length;
   for (let i = 0; i < arrLength; i++) {
     if (!pathToP[i] || !pathToQ[i] || pathToP[i].val !== pathToQ[i].val)
-      return pathToP[i - 1].val;
+      return new TreeNode(pathToP[i - 1].val);
   }
-
-  return 0;
+  return root;
 }
 
 function getPath(
