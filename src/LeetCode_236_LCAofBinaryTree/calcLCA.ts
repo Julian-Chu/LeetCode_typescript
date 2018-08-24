@@ -39,16 +39,25 @@ function getPath(
   } else {
     if (newRoot.left) {
       newPath = getPath(newRoot.left, node, newPath);
-      if (newPath.length > path.length) return newPath;
+      let length = newPath.length;
+      if (length > 1 && newPath[0].val !== newPath[length - 1].val)
+        return newPath;
+      newPath.pop();
     }
 
     if (newRoot.right) {
       newPath = getPath(newRoot.right, node, newPath);
-      if (newPath.length > path.length) return newPath;
+      let length = newPath.length;
+      if (length > 1 && newPath[0].val !== newPath[length - 1].val)
+        return newPath;
+      newPath.pop();
     }
   }
 
-  // if (newPath.length > 1) newPath.pop();
+  if (newPath.length > 1) {
+    newPath.pop();
+    newPath.push(newPath[0]);
+  }
 
   return newPath;
 }
