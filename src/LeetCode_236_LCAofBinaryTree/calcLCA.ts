@@ -9,13 +9,17 @@ export class TreeNode {
 
 export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode {
   let pathToP = getPath(root, p);
-  let pathToQ = getPath(root, q);
-  let arrLength =
-    pathToP.length > pathToQ.length ? pathToP.length : pathToQ.length;
-  for (let i = 0; i < arrLength; i++) {
-    if (!pathToP[i] || !pathToQ[i] || pathToP[i].val !== pathToQ[i].val)
-      return new TreeNode(pathToP[i - 1].val);
+  let arrLength = pathToP.length;
+  let pathToQ;
+  for (let i = arrLength - 1; i > 0; i--) {
+    if (pathToP[i].val === q.val) return q;
+    let LCA = pathToP[i];
+    pathToQ = getPath(LCA, q);
+    if (pathToQ.length > 1) {
+      return LCA;
+    }
   }
+
   return root;
 }
 
