@@ -7,60 +7,28 @@ export class TreeNode {
   }
 }
 
-export function calcLCA(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode {
-  let pathToP = getPath(root, p);
-  let arrLength = pathToP.length;
-  let pathToQ;
-  for (let i = arrLength - 1; i > 0; i--) {
-    if (pathToP[i].val === q.val) return q;
-    let LCA = pathToP[i];
-    pathToQ = getPath(LCA, q);
-    if (pathToQ.length > 1) {
-      return LCA;
-    }
-  }
-
-  return root;
-}
-
-function getPath(
+export function calcLCA(
   root: TreeNode,
-  node: TreeNode,
-  path: Array<TreeNode> = []
-): Array<TreeNode> {
-  let newPath = path.slice();
-  let newRoot = Object.assign({}, root);
-  newPath.push(newRoot);
-  if (newRoot.left && newRoot.left.val === node.val) {
-    newPath.push(newRoot.left);
-    return newPath;
-  } else if (newRoot.right && newRoot.right.val === node.val) {
-    newPath.push(newRoot.right);
-    return newPath;
+  p: TreeNode,
+  q: TreeNode
+): TreeNode | null {
+  if (root.val === p.val || root.val === q.val) return root;
+  else if (!root) return null;
+
+  let left = null;
+  if (root.left) {
+    left = calcLCA(root.left, p, q);
+  }
+  let right = null;
+  if (root.right) right = calcLCA(root.right, p, q);
+
+  if (right && left) {
+    return root;
+  } else if (!right) {
+    return left;
   } else {
-    if (newRoot.left) {
-      newPath = getPath(newRoot.left, node, newPath);
-      let length = newPath.length;
-      if (length > 1 && newPath[0].val !== newPath[length - 1].val)
-        return newPath;
-      newPath.pop();
-    }
-
-    if (newRoot.right) {
-      newPath = getPath(newRoot.right, node, newPath);
-      let length = newPath.length;
-      if (length > 1 && newPath[0].val !== newPath[length - 1].val)
-        return newPath;
-      newPath.pop();
-    }
+    return right;
   }
-
-  if (newPath.length > 1) {
-    newPath.pop();
-    newPath.push(newPath[0]);
-  }
-
-  return newPath;
 }
 
 export function createBinaryTree(): TreeNode {
