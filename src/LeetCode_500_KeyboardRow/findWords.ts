@@ -32,3 +32,5 @@ let findWords = function(words: string[]): string[] {
 
   return result;
 };
+
+export default findWords;
