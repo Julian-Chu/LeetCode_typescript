@@ -7,7 +7,7 @@ let findWords = function(words: string[]): string[] {
   let keyboardRows = [keyboardRow1, keyboardRow2, keyboardRow3];
 
   words.forEach(word => {
-    let charArr = word.split("");
+    let charArr = word.toUpperCase().split("");
     let row: number;
     const e = charArr[0];
     if (keyboardRow1.includes(e)) {
