@@ -21,4 +21,14 @@ describe("find 2nd minimum value in BTree", () => {
 
     expect(findSecondMinimumValue(root)).toBe(5);
   });
+
+  it("root:[2, 5 ,2 ,null,null,2,7], return 5", () => {
+    let root = new TreeNode(2);
+    root.left = new TreeNode(5);
+    root.right = new TreeNode(2);
+    root.right.left = new TreeNode(2);
+    root.right.right = new TreeNode(7);
+
+    expect(findSecondMinimumValue(root)).toBe(5);
+  });
 });
