@@ -4,9 +4,9 @@ export let findSecondMinimumValue = function(root: TreeNode): number {
   findLeafNode(root, nodeList);
   if (nodeList.size === 1) return -1;
 
-  let max = Math.max(...nodeList);
-  nodeList.delete(max);
-  let secondMinVal = Math.max(...nodeList);
+  let min = Math.min(...nodeList);
+  nodeList.delete(min);
+  let secondMinVal = Math.min(...nodeList);
 
   return secondMinVal;
 };
