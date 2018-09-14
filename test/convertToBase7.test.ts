@@ -4,4 +4,8 @@ describe("convert to base 7", () => {
   it("give 7, return '10'", () => {
     expect(convertToBase7(7)).toBe("10");
   });
+
+  it("give 100, return 202", () => {
+    expect(convertToBase7(100)).toBe("202");
+  });
 });
