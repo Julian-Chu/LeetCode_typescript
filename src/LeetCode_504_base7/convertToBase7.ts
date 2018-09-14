@@ -4,7 +4,7 @@
  */
 export function convertToBase7(num: number): string {
   let resArr = [];
-  let quotient = num;
+  let quotient = Math.abs(num);
   let remainder: number;
   while (quotient >= 7) {
     let dividend = quotient;
@@ -13,5 +13,8 @@ export function convertToBase7(num: number): string {
     resArr.unshift(remainder);
   }
   resArr.unshift(quotient);
+  if (num < 0) {
+    resArr.unshift("-");
+  }
   return resArr.join("");
 }
